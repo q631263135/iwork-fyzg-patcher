@@ -37,7 +37,6 @@
 	<%=outputStr %>
 
 
-
 	<%
 		request.getRequestDispatcher("WEB-INF/pages/out.jsp").forward(request, response); 
 	%>
