@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../index.jsp" name="logonForm">
-		<input type="submit" value="submit" />
+	<form action="../index.jsp" name="logonForm" method="post">
+		<p>页面位于上一层文件夹</p>
+		<input type="submit" value="相对路径跳转" />
+	</form>
+	<br />
+	<form action="/index.jsp" name="logonForm">
+		<input type="submit" value="跳转路径前有/" />
 	</form>
 </body>
 </html>
