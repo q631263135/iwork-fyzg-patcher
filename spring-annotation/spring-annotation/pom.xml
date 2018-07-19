@@ -50,6 +50,7 @@
 					<version>2.20.1</version>
 				</plugin>
 				<plugin>
+					<!-- mavenarchiver -->
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>3.0.2</version>
 				</plugin>
