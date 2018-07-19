@@ -10,15 +10,24 @@
 <title>user logon</title>
 <style type="text/css">
 	body {
-		background: #000 url("<%=path%>/images/20180124_115621_001.jpg") no-repeat fixed;
+		background: #fff url("<%=path%>/images/20180124_115621_001.jpg") no-repeat fixed center;
+		width: 800px;
+		margin: 10px auto;
+		position: relative;
+		border: 1px solid blue;
 	}
 
+	#loginForm {
+		position: absolute;
+		top: 500px;
+	}
 </style>
 </head>
 <body>
-	<form action="loginSuccess.jsp" method="post">
+	<form id="loginForm" action="loginSuccess.jsp" method="post">
 		userName: <input type="text" name="userName" />
 		password: <input type="password" name="userPassWord" />
+		age:<input type="text" name="age" />
 		
 		<input type="submit" value="submit" />
 	</form>
