@@ -45,7 +45,7 @@ public class Patcher extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (source2CompileHandler.gen()) {
-                        JOptionPane.showMessageDialog(jframeSelf, "OK");
+                        // JOptionPane.showMessageDialog(jframeSelf, "OK");
                         jframeSelf.dispose();
 
                         Runtime.getRuntime().exec("explorer.exe /e, " + source2CompileHandler.getPatchOutputFolder());
@@ -60,7 +60,7 @@ public class Patcher extends JFrame {
 
         this.setTitle("请拖动源码文件到光标处..");
         this.setAlwaysOnTop(true);
-        this.setSize(600, 400);
+        this.setSize(600, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
