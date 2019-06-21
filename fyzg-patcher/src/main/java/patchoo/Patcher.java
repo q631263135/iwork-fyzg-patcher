@@ -31,7 +31,7 @@ public class Patcher extends JFrame {
         JTextArea jTextArea = new MyTextArea();
 
         jTextArea.setColumns(20);
-        jTextArea.setRows(20);
+        jTextArea.setRows(10);
         jScrollPane.setViewportView(jTextArea);
         getContentPane().add(jScrollPane, BorderLayout.NORTH);
 

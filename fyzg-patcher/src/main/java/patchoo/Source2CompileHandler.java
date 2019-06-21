@@ -10,8 +10,8 @@ public class Source2CompileHandler {
 
     private final String WEB_INF_CLASSES = "\\WEB-INF\\classes\\";
 
-    private String patchOutputFolder = "D:\\temp\\patch";
-    private String programFolder = "D:\\workspaces\\IDEA_fxzb\\joyin.product-fyzg-public-parent\\joyin.product-fyzg-public-page\\target\\joyin.product-fyzg-public-page";
+    private String patchOutputFolder = "D:\\temp\\swhy_patch";
+    private String programFolder = "D:\\workspaces\\IDEA_swhy\\joyin.product-fyzg-public-parent\\joyin.product-fyzg-public-page\\target\\joyin.product-fyzg-public-page";
 
     List<SourceFile> sourceFiles = new ArrayList<>();
 
