@@ -10,17 +10,8 @@ import java.io.IOException;
 
 public class ButtonPanel extends JPanel {
     public ButtonPanel(BootStrap bootStrap) {
-        JButton gen = new JButton("生成补丁..");
+        JButton gen = new JButton("生成补丁...");
         this.add(gen, BorderLayout.EAST);
-        gen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    bootStrap.generatePathFiles();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+        gen.addActionListener(e -> bootStrap.generatePathFiles());
     }
 }

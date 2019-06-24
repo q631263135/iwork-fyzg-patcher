@@ -25,21 +25,27 @@ import java.util.List;
 /**第二次编程 面向对象**/
 public class BootStrap extends MyFrame {
 
+    // 待生成补丁的文件（IDEA下的local changes）
     private List<File> filesChanged = new ArrayList<>();
 
+    // 文本域，可以粘贴文件路径
     private JTextArea textArea = null;
 
+    // 按钮容器
     private JPanel buttonPanel = null;
 
     public List<File> getFilesChanged() {
         return filesChanged;
     }
 
-    public BootStrap(String title) throws HeadlessException {
+    private BootStrap(String title) throws HeadlessException {
         super(title);
         initComponent();
     }
 
+    /**
+     * 初始化界面
+     */
     private void initComponent() {
         // FileTextArea->补丁文件路径
         textArea = new FileTextArea(this);
@@ -52,20 +58,25 @@ public class BootStrap extends MyFrame {
         this.add(buttonPanel);
     }
 
-    public void generatePathFiles() throws IOException {
+    /**
+     * 生成补丁文件
+     */
+    public void generatePathFiles() {
         // 工厂模式不要仅局限于创建对象，当需要创建各种行为时，也相当于创建包装行为的对象；
-        // 相当于说需要创建不同的行为时，也可以使用工厂模式
+        // 相当于说需要创建不同的行为时，也可以使用工厂模式（一切皆对象此处适用）
         try {
             PatchFileHandlerFactory patchFileHandlerFactory = new PatchFileHandlerFactory();
 
-            for (int i = 0; i < filesChanged.size(); i++) {
-                File file = filesChanged.get(i);
+            // 遍历变动的文件，交给相应的文件补丁处理器处理，生成补丁文件
+            for (File file : filesChanged) {
                 PatchFileHandler fileHandler = patchFileHandlerFactory.newFileHandler(file);
                 fileHandler.handle(file);
             }
 
             BatUtil.getInstance().completeCmd();
             this.dispose();
+
+            // 完成生成补丁，打开补丁文件所在目录
             Runtime.getRuntime().exec("explorer.exe /e, " + Config.patchFolder);
         } catch (Exception e) {
             textArea.setText("程序执行发生异常：" + ExceptionUtil.getStackTrace(e));
@@ -73,7 +84,10 @@ public class BootStrap extends MyFrame {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+        // 设置界面显示主题
+        UIManager.setLookAndFeel(com.sun.java.swing.plaf.windows.WindowsLookAndFeel.class.getName());
+
         EventQueue.invokeLater(() -> new BootStrap("拷贝文件路径到下方区域...").setVisible(true));
     }
 }
