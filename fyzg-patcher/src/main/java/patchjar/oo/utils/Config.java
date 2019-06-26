@@ -21,7 +21,9 @@ public class Config {
             pro.load(Config.class.getResourceAsStream("/default.properties"));
             deployFolder = pro.getProperty("deployFolder");
             patchFolder = pro.getProperty("patchFolder");
-        } catch (IOException e) {
+
+            FileUtil.deleteFile(patchFolder);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

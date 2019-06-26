@@ -12,7 +12,6 @@ import patchjar.oo.utils.ExceptionUtil;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 // 过程化编程要解决的问题
@@ -22,7 +21,9 @@ import java.util.List;
 // 3. 生成补丁文件的过程需要抽象出来，方便将来扩展；
 // 4. 将面向过程的代码片段，放到对象的方法区，利用对象的继承多态等来增强可扩展性（一定程度上来说，继承等就是为了解决把面向过程编程的扩展方式即分支语句）
 
-/**第二次编程 面向对象**/
+/**
+ * 第二次编程 面向对象
+ **/
 public class BootStrap extends MyFrame {
 
     // 待生成补丁的文件（IDEA下的local changes）

@@ -12,6 +12,7 @@ public class FileUtil {
                 return file;
             } catch (IOException e) {
                 System.out.println("FileUtil.createFile() Exception:" + e.getMessage());
+                throw new RuntimeException(e);
             }
         }
         return file;
@@ -37,6 +38,7 @@ public class FileUtil {
             }
         } catch (FileNotFoundException e) {
             System.out.println("FileUtil.deleteFile() Exception:" + e.getMessage());
+            throw new RuntimeException(e);
         }
         return true;
     }
@@ -53,6 +55,7 @@ public class FileUtil {
             fos.close();
         } catch (Exception e) {
             System.out.println("FileUtil.copyFile() Exception:" + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

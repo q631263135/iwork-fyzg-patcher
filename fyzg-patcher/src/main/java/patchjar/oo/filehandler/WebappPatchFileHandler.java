@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JspPatchFileHandler extends PatchFileHandler {
+public class WebappPatchFileHandler extends PatchFileHandler {
     @Override
     public void handle(File file) {
         Pattern compile = Pattern.compile("\\\\src\\\\main\\\\webapp(.*)\\\\(.*)");
