@@ -26,7 +26,12 @@ public class ResoucesPatchFileHandler extends PatchFileHandler {
         // 复制文件内容
         FileUtil.copyFile(file, patchFile);
 
-        batUtil.appentCmd("cd %SourceFolder%");
-        batUtil.appentCmd("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + resourceFilePath.substring(1));
+
+        if ("joyin.product-fyzg-public-page".equals(projectName)) {
+            batUtil.appentCmd("xcopy \"%SourceFolder%" + resourceFilePath + "\" \"%TargetFolder%\\WEB-INF\\classes" + resourceFilePath + "\" /y");
+        } else {
+            batUtil.appentCmd("cd %SourceFolder%");
+            batUtil.appentCmd("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + resourceFilePath.substring(1));
+        }
     }
 }

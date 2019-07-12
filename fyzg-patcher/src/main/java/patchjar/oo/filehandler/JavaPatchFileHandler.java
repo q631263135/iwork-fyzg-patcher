@@ -16,22 +16,30 @@ public class JavaPatchFileHandler extends PatchFileHandler {
 
         // 如：joyin.product-fyzg-public-domain
         String projectName = matcher.group(1);
-
-        // 如：\com\joyin\fyzg\domain\batch\XXX.class
-        // matcher.group(2)：\com\joyin\fyzg\domain\batch
-        // matcher.group(3)：XXX
-        String classFilePath = matcher.group(2) + "\\" + matcher.group(3) + ".class";
+        // 如：\com\joyin\fyzg\domain\batch
+        String classFileClassPath = matcher.group(2);
+        // 如：Constants
+        String classFileName = matcher.group(3);
+        // 如：\com\joyin\fyzg\domain\batch\Constants.class
+//        String classFilePath = classFileClassPath + "\\" + classFileName + ".class";
 
         // 找到部署文件中的class文件
-        File classFile = new File(Config.deployFolder + classFilePath);
+//        File classFile = new File(Config.deployFolder + classFilePath);
 
-        // 新建补丁文件
-        File patchFile = FileUtil.createFile(Config.patchFolder + classFilePath);
+        File innerClassParentFolder = new File(Config.deployFolder + classFileClassPath);
+        File[] innerClasses = FileUtil.listFilesByInnerClassName(innerClassParentFolder, classFileName);
 
-        // 复制文件内容
-        FileUtil.copyFile(classFile, patchFile);
+        for (File classFile : innerClasses) {
+            String classFilePath = classFileClassPath + "\\" + classFile.getName();
+            // 新建补丁文件
+            File patchFile = FileUtil.createFile(Config.patchFolder + classFilePath);
+            // 复制文件内容
+            FileUtil.copyFile(classFile, patchFile);
 
-        batUtil.appentCmd("cd %SourceFolder%");
-        batUtil.appentCmd("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1));
+            batUtil.appentCmd("cd %SourceFolder%");
+            batUtil.appentCmd("jar vuf %TargetFolder%\\WEB-INF\\lib\\");
+            batUtil.appentCmd(projectName + "-0.0.1-SNAPSHOT.jar " );
+            batUtil.appentCmd(classFilePath.substring(1) );
+        }
     }
 }

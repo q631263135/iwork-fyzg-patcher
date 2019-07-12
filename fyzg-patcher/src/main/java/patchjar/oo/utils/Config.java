@@ -1,13 +1,8 @@
 package patchjar.oo.utils;
 
-import java.io.IOException;
 import java.util.Properties;
 
 public class Config {
-
-
-//    final String deployFolder = "D:\\workspaces\\IDEA_fxzb\\joyin.product-fyzg-public-parent\\joyin.product-fyzg-public-page\\target\\joyin.product-fyzg-public-page\\WEB-INF\\classes";
-//    final String patchFolder = "D:\\temp\\patch";
 
     // 项目部署部署路径
     public static String deployFolder = null;

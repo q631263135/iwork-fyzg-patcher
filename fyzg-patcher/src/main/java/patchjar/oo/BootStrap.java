@@ -8,12 +8,16 @@ import patchjar.oo.filehandler.PatchFileHandlerFactory;
 import patchjar.oo.utils.BatUtil;
 import patchjar.oo.utils.Config;
 import patchjar.oo.utils.ExceptionUtil;
+import patchjar.oo.utils.FileUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 // 过程化编程要解决的问题
 
 // 1. 哪些文件要生成补丁：这里拟从JTextArea中获取，在“客户端”加载
@@ -57,10 +61,14 @@ public class BootStrap extends MyFrame {
         // ButtonPanel->定义按钮及其行为
         buttonPanel = new ButtonPanel(this);
         this.add(buttonPanel);
+
+        System.out.println("");
     }
 
     /**
      * 生成补丁文件
+     *
+     * 核心业务代码
      */
     public void generatePathFiles() {
         // 工厂模式不要仅局限于创建对象，当需要创建各种行为时，也相当于创建包装行为的对象；
@@ -70,6 +78,9 @@ public class BootStrap extends MyFrame {
 
             // 遍历变动的文件，交给相应的文件补丁处理器处理，生成补丁文件
             for (File file : filesChanged) {
+                if (file.isDirectory()) {
+                    continue;
+                }
                 PatchFileHandler fileHandler = patchFileHandlerFactory.newFileHandler(file);
                 fileHandler.handle(file);
             }
@@ -90,5 +101,13 @@ public class BootStrap extends MyFrame {
         UIManager.setLookAndFeel(com.sun.java.swing.plaf.windows.WindowsLookAndFeel.class.getName());
 
         EventQueue.invokeLater(() -> new BootStrap("拷贝文件路径到下方区域...").setVisible(true));
+
+        // 什么？你5分钟还没把补丁打好，这是多么浪费生命的事情啊，干脆别做了！
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 300000);
     }
 }

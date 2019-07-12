@@ -5,13 +5,6 @@ import java.io.File;
 public class PatchFileHandlerFactory {
 
     public PatchFileHandler newFileHandler(File file) {
-//        if (file.getName().endsWith("java")) {
-//            return new JavaPatchFileHandler();
-//        } else if (file.getName().endsWith("jsp")) {
-//            return new WebappPatchFileHandler();
-//        } else {
-//            return new ResoucesPatchFileHandler();
-//        }
 
         if (file.getAbsolutePath().contains("\\src\\main\\java")) {
             return new JavaPatchFileHandler();

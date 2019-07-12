@@ -58,4 +58,21 @@ public class FileUtil {
             throw new RuntimeException(e);
         }
     }
+
+    public static File[] listFilesByInnerClassName(File folder, String innerClassNamePrefix) {
+        return folder.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                // 内部类
+                if (pathname.getName().startsWith(innerClassNamePrefix) && pathname.getName().contains("$")) {
+                    return true;
+                }
+                // 外部类
+                if (pathname.getName().split("\\.")[0].equals(innerClassNamePrefix)) {
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 }
