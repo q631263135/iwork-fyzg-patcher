@@ -20,9 +20,9 @@ public class WebappPatchFileHandler extends PatchFileHandler {
         FileUtil.copyFile(file, patchFile);
 
         if (matcher.group(1).indexOf("\\") > -1) {
-            batUtil.appentCmd("cd %TargetFolder%");
-            batUtil.appentCmd("md " + matcher.group(1) + " 2>nul");
+            batUtil.appent("cd %TargetFolder%");
+            batUtil.appent("md " + matcher.group(1) + " 2>nul");
         }
-        batUtil.appentCmd("xcopy \"%SourceFolder%" + jspFilePath + "\" \"%TargetFolder%" + jspFilePath + "\" /y");
+        batUtil.appent("xcopy \"%SourceFolder%" + jspFilePath + "\" \"%TargetFolder%" + jspFilePath + "\" /y");
     }
 }

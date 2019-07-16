@@ -5,10 +5,10 @@ import patchjar.oo.components.FileTextArea;
 import patchjar.oo.components.MyFrame;
 import patchjar.oo.filehandler.PatchFileHandler;
 import patchjar.oo.filehandler.PatchFileHandlerFactory;
-import patchjar.oo.utils.BatUtil;
+import patchjar.oo.utils.handlerchain.BatUtil;
 import patchjar.oo.utils.Config;
 import patchjar.oo.utils.ExceptionUtil;
-import patchjar.oo.utils.FileUtil;
+import patchjar.oo.utils.handlerchain.SHUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 // 过程化编程要解决的问题
 
 // 1. 哪些文件要生成补丁：这里拟从JTextArea中获取，在“客户端”加载
@@ -85,7 +84,7 @@ public class BootStrap extends MyFrame {
                 fileHandler.handle(file);
             }
 
-            BatUtil.getInstance().completeCmd();
+            BatUtil.getInstance().complete();
             this.dispose();
 
             // 完成生成补丁，打开补丁文件所在目录

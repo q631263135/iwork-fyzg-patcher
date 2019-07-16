@@ -36,10 +36,10 @@ public class JavaPatchFileHandler extends PatchFileHandler {
             // 复制文件内容
             FileUtil.copyFile(classFile, patchFile);
 
-            batUtil.appentCmd("cd %SourceFolder%");
-            batUtil.appentCmd("jar vuf %TargetFolder%\\WEB-INF\\lib\\");
-            batUtil.appentCmd(projectName + "-0.0.1-SNAPSHOT.jar " );
-            batUtil.appentCmd(classFilePath.substring(1) );
+            batUtil.appent("cd %SourceFolder%");
+            batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\");
+            batUtil.appent(projectName + "-0.0.1-SNAPSHOT.jar " );
+            batUtil.appent(classFilePath.substring(1) );
         }
     }
 }

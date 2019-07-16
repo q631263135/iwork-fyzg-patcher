@@ -1,8 +1,10 @@
-package patchjar.oo.utils;
+package patchjar.oo.utils.handlerchain;
+
+import patchjar.oo.utils.Config;
 
 import java.io.*;
 
-public class BatUtil {
+public class BatUtil extends BatHandler {
     private StringBuffer batCmd = new StringBuffer();;
 
     private static final BatUtil batUtil = new BatUtil();
@@ -16,7 +18,9 @@ public class BatUtil {
         batCmd.append("	pause \r\n");
         batCmd.append("	exit \r\n");
         batCmd.append(")\r\n");
+        this.setNextHandler(SHUtil.getInstance());
     }
+
 
     // 注意：这里不能用懒汉式单例
     public static BatUtil getInstance() {
