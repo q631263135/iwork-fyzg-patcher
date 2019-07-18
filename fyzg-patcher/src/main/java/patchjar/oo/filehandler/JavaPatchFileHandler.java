@@ -37,9 +37,10 @@ public class JavaPatchFileHandler extends PatchFileHandler {
             FileUtil.copyFile(classFile, patchFile);
 
             batUtil.appent("cd %SourceFolder%");
-            batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\");
-            batUtil.appent(projectName + "-0.0.1-SNAPSHOT.jar " );
-            batUtil.appent(classFilePath.substring(1) );
+            batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1));
+
+            shUtil.appent("cd $SourceFolder");
+            shUtil.appent("jar vuf $TargetFolder/WEB-INF/lib/" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1).replace("\\", "/"));
         }
     }
 }

@@ -85,6 +85,7 @@ public class BootStrap extends MyFrame {
             }
 
             BatUtil.getInstance().complete();
+            SHUtil.getInstance().complete();
             this.dispose();
 
             // 完成生成补丁，打开补丁文件所在目录

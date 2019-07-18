@@ -29,9 +29,13 @@ public class ResoucesPatchFileHandler extends PatchFileHandler {
 
         if ("joyin.product-fyzg-public-page".equals(projectName)) {
             batUtil.appent("xcopy \"%SourceFolder%" + resourceFilePath + "\" \"%TargetFolder%\\WEB-INF\\classes" + resourceFilePath + "\" /y");
+            shUtil.appent("cp -v $SourceFolder" + resourceFilePath.replace("\\", "/") + " $TargetFolder/WEB-INF/classes" + resourceFilePath.replace("\\", "/") );
         } else {
             batUtil.appent("cd %SourceFolder%");
             batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + resourceFilePath.substring(1));
+
+            shUtil.appent("cd $SourceFolder");
+            shUtil.appent("jar vuf $TargetFolder/WEB-INF/lib/" + projectName + "-0.0.1-SNAPSHOT.jar " + resourceFilePath.substring(1).replace("\\", "/"));
         }
     }
 }

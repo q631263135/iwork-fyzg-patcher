@@ -8,6 +8,7 @@ import java.io.File;
 
 public abstract class PatchFileHandler {
     protected BatUtil batUtil = BatUtil.getInstance();
+    protected SHUtil shUtil = SHUtil.getInstance();
 
     public abstract void handle(File file);
 }

@@ -18,7 +18,7 @@ public class BatUtil extends BatHandler {
         batCmd.append("	pause \r\n");
         batCmd.append("	exit \r\n");
         batCmd.append(")\r\n");
-        this.setNextHandler(SHUtil.getInstance());
+//        this.setNextHandler(SHUtil.getInstance());
     }
 
 
