@@ -90,7 +90,8 @@ public class BootStrap extends MyFrame {
             this.dispose();
 
             // 完成生成补丁，打开补丁文件所在目录
-            Runtime.getRuntime().exec("explorer.exe /e, " + Config.patchFolder);
+            Runtime.getRuntime().exec("explorer.exe /e, " + Config.patchFolder.substring(0, Config.patchFolder.lastIndexOf("\\")) );
+            BatUtil.runBat(Config.bat);
         } catch (Exception e) {
             textArea.setText(String.format("程序执行发生异常：%s=====================请检查行%s",
                     ExceptionUtil.getStackTrace(e), BatUtil.counter));

@@ -33,6 +33,20 @@ public class JavaPatchFileHandler extends PatchFileHandler {
 
             batUtil.mark(); // 后续采用切面方式
             for (File classFile : innerClasses) {
+//                String classFilePath = classFileClassPath + "\\" + classFile.getName();
+//                // 新建补丁文件
+//                File patchFile = FileUtil.createFile(Config.patchFolder + classFilePath);
+//                // 复制文件内容
+//                FileUtil.copyFile(classFile, patchFile);
+//
+//                batUtil.appent("cd %SourceFolder%");
+//                batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1));
+//
+//                shUtil.appent("cd $SourceFolder");
+//                shUtil.appent("jar vuf $TargetFolder/WEB-INF/lib/" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1).replace("\\", "/")
+//                        .replace("$", "\\$"));
+
+
                 String classFilePath = classFileClassPath + "\\" + classFile.getName();
                 // 新建补丁文件
                 File patchFile = FileUtil.createFile(Config.patchFolder + classFilePath);
@@ -40,12 +54,11 @@ public class JavaPatchFileHandler extends PatchFileHandler {
                 FileUtil.copyFile(classFile, patchFile);
 
                 batUtil.appent("cd %SourceFolder%");
-                batUtil.appent("jar vuf %TargetFolder%\\WEB-INF\\lib\\" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1));
-
-                shUtil.appent("cd $SourceFolder");
-                shUtil.appent("jar vuf $TargetFolder/WEB-INF/lib/" + projectName + "-0.0.1-SNAPSHOT.jar " + classFilePath.substring(1).replace("\\", "/")
-                        .replace("$", "\\$"));
+                batUtil.appent("xcopy \"%SourceFolder%" + classFilePath + "\" \"%TargetFolder%\\WEB-INF\\classes" +
+                        classFilePath + "\" /y");
             }
+
+
         }
     }
 }

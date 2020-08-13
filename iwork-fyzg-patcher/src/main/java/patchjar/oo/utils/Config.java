@@ -13,6 +13,7 @@ public class Config {
     public static String repalceFlag = null;
     public static String replaceStr = null;
     public static String replaceTo = null;
+    public static String bat = null;
 
     static {
         Properties pro = new Properties();
@@ -23,6 +24,7 @@ public class Config {
             repalceFlag = pro.getProperty("repalceFlag");
             replaceStr = pro.getProperty("replaceStr");
             replaceTo = pro.getProperty("replaceTo");
+            bat = pro.getProperty("bat");
 
             FileUtil.deleteFile(patchFolder);
         } catch (Exception e) {

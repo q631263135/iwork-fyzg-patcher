@@ -53,4 +53,22 @@ public class BatUtil extends BatHandler {
     public void mark() {
         counter++;
     }
+
+    public static void runBat(String batPath) {
+        try {
+            Process ps = Runtime.getRuntime().exec(batPath);
+            InputStream in = ps.getInputStream();
+            int c;
+            while ((c = in.read()) != -1) {
+            }
+            in.close();
+            ps.waitFor();
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

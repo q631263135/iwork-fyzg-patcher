@@ -26,11 +26,17 @@ public class WebappPatchFileHandler extends PatchFileHandler {
         if (matcher.group(1).indexOf("\\") > -1) {
             batUtil.appent("cd %TargetFolder%");
             batUtil.appent("md " + matcher.group(1) + " 2>nul");
-
-            shUtil.appent("cd $TargetFolder");
-            shUtil.appent("mkdir -vp ." + matcher.group(1).replace("\\", "/"));
         }
         batUtil.appent("xcopy \"%SourceFolder%" + jspFilePath + "\" \"%TargetFolder%" + jspFilePath + "\" /y");
-        shUtil.appent("cp -v $SourceFolder" + jspFilePath.replace("\\", "/") + " $TargetFolder" + jspFilePath.replace("\\", "/") );
+
+//        if (matcher.group(1).indexOf("\\") > -1) {
+//            batUtil.appent("cd %TargetFolder%");
+//            batUtil.appent("md " + matcher.group(1) + " 2>nul");
+//
+//            shUtil.appent("cd $TargetFolder");
+//            shUtil.appent("mkdir -vp ." + matcher.group(1).replace("\\", "/"));
+//        }
+//        batUtil.appent("xcopy \"%SourceFolder%" + jspFilePath + "\" \"%TargetFolder%" + jspFilePath + "\" /y");
+//        shUtil.appent("cp -v $SourceFolder" + jspFilePath.replace("\\", "/") + " $TargetFolder" + jspFilePath.replace("\\", "/") );
     }
 }
